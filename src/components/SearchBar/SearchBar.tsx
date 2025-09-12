@@ -1,28 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useDebounce } from "../../hooks/useDebounce";
 
-type Props = { onSearch: (q: string) => void; initial?: string };
-
-const SearchBar = ({ onSearch, initial = "" }: Props) => {
+const SearchBar = () => {
+  const [params, setParams] = useSearchParams();
+  const initial = params.get("q") ?? "";
   const [q, setQ] = useState(initial);
+  const debounced = useDebounce(q, 400);
+
+  useEffect(() => {
+    const next = new URLSearchParams(params);
+    if (debounced) {
+      next.set("q", debounced);
+      next.set("page", "1");
+    } else {
+      next.delete("q");
+      next.set("page", "1");
+    }
+    setParams(next, { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debounced]);
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSearch(q.trim());
-      }}
-    >
+    <form className="search">
       <input
         value={q}
         onChange={(e) => setQ(e.target.value)}
         placeholder="Search movies..."
         aria-label="Search movies"
-        style={{
-          width: "100%",
-          padding: "10px 12px",
-          borderRadius: 10,
-          border: "1px solid #e5e7eb",
-          outline: "none",
-        }}
+        className="input"
       />
     </form>
   );

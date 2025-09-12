@@ -1,21 +1,24 @@
 import type { MovieSummary } from "../../api/types";
 import MovieCard from "../MovieCard/MovieCard";
 
-type Props = { movies: MovieSummary[]; favIds?: number[] };
-const MovieGrid = ({ movies, favIds = [] }: Props) => {
+type Props = {
+  movies: MovieSummary[];
+  favIds?: number[];
+  genresMap?: Map<number, string>;
+};
+const Grid = ({ movies, favIds = [], genresMap }: Props) => {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        gap: 12,
-      }}
-    >
+    <div className="grid">
       {movies.map((m) => (
-        <MovieCard key={m.id} movie={m} isFavorite={favIds.includes(m.id)} />
+        <MovieCard
+          key={m.id}
+          movie={m}
+          isFavorite={favIds.includes(m.id)}
+          genresMap={genresMap}
+        />
       ))}
     </div>
   );
 };
 
-export default MovieGrid;
+export default Grid;

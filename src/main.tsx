@@ -1,17 +1,19 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
-import { store } from "./redux/app/store";
 import { router } from "./router";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
       <Toaster position="top-right" />
-    </Provider>
+    </QueryClientProvider>
   </StrictMode>
 );

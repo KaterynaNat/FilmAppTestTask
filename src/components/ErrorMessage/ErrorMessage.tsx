@@ -2,10 +2,7 @@ type ErrorMessageProps = {
   title: string;
   description?: string;
   type?: "error" | "empty" | "info";
-  action?: {
-    label: string;
-    onClick: () => void;
-  };
+  action?: { label: string; onClick: () => void };
 };
 
 const ErrorMessage = ({
@@ -22,5 +19,4 @@ const ErrorMessage = ({
     </div>
   );
 };
-
 export default ErrorMessage;

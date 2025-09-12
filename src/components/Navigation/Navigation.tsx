@@ -5,10 +5,10 @@ const Navigation = () => {
   return (
     <>
       <Header />
-      <main style={{ maxWidth: 1200, margin: "0 auto", padding: 16 }}>
+      <main className="container">
         <Outlet />
       </main>
-      <footer style={{ padding: 16, opacity: 0.6, textAlign: "center" }}>
+      <footer className="footer">
         <NavLink to="/">Home</NavLink> ·{" "}
         <NavLink to="/favorites">Favorites</NavLink> ·{" "}
         <Link to="https://www.themoviedb.org/" target="_blank" rel="noreferrer">
