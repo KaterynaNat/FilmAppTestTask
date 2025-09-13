@@ -1,12 +1,13 @@
 import { useSearchParams } from "react-router-dom";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { getPopular, searchMovies } from "../../api/tmdb";
-import MovieGrid from "../../components/Grid/Grid";
+import Grid from "../../components/Grid/Grid";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { useFavorites } from "../../store/useFavorites";
 import { useGenresMap } from "../../hooks/useGenresMap";
 import type { PaginatedResult, MovieSummary } from "../../api/types";
+import s from "./HomePage.module.css";
 
 const HomePage = () => {
   const [params, setParams] = useSearchParams();
@@ -14,7 +15,7 @@ const HomePage = () => {
   const page = Number(params.get("page") ?? "1");
 
   const genresMap = useGenresMap();
-  const favIds = useFavorites((s) => s.ids);
+  const favIds = useFavorites((st) => st.ids);
 
   const queryKey = q ? ["search", q, page] : (["popular", page] as const);
   const queryFn = () => (q ? searchMovies(q, page) : getPopular(page));
@@ -56,11 +57,12 @@ const HomePage = () => {
     );
 
   return (
-    <section className="stack">
-      <h1>Popular {q && `/ Search: “${q}”`}</h1>
-      <MovieGrid movies={data.results} favIds={favIds} genresMap={genresMap} />
+    <section className={s.wrap}>
+      <h1 className={s.title}>Popular {q && `/ Search: “${q}”`}</h1>
 
-      <div className="pagination">
+      <Grid movies={data.results} favIds={favIds} genresMap={genresMap} />
+
+      <div className={s.pagination}>
         <button
           disabled={page <= 1 || isFetching}
           onClick={() => setPage(page - 1)}

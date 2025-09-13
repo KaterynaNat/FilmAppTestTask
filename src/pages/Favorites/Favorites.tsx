@@ -2,9 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { getMovie } from "../../api/tmdb";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import MovieGrid from "../../components/Grid/Grid";
+import Grid from "../../components/Grid/Grid";
 import { useFavorites } from "../../store/useFavorites";
 import type { MovieSummary, MovieDetails } from "../../api/types";
+import s from "./Favorites.module.css";
 
 const Favorites = () => {
   const fav = useFavorites();
@@ -40,9 +41,9 @@ const Favorites = () => {
   }));
 
   return (
-    <section className="stack">
-      <h1>Favorites</h1>
-      <MovieGrid movies={movies} favIds={fav.ids} />
+    <section className={s.wrap}>
+      <h1 className={s.title}>Favorites</h1>
+      <Grid movies={movies} favIds={fav.ids} />
     </section>
   );
 };

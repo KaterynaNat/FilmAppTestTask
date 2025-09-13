@@ -1,3 +1,5 @@
+import s from "./ErrorMessage.module.css";
+
 type ErrorMessageProps = {
   title: string;
   description?: string;
@@ -10,13 +12,16 @@ const ErrorMessage = ({
   description,
   type = "info",
   action,
-}: ErrorMessageProps) => {
-  return (
-    <div data-type={type}>
-      <h2>{title}</h2>
-      {description && <p>{description}</p>}
-      {action && <button onClick={action.onClick}>{action.label}</button>}
-    </div>
-  );
-};
+}: ErrorMessageProps) => (
+  <div className={s.wrap} data-type={type}>
+    <h2 className={s.title}>{title}</h2>
+    {description && <p className={s.desc}>{description}</p>}
+    {action && (
+      <button className={s.btn} onClick={action.onClick}>
+        {action.label}
+      </button>
+    )}
+  </div>
+);
+
 export default ErrorMessage;

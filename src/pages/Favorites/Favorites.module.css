@@ -1,0 +1,21 @@
+.wrap {
+  display: grid;
+  gap: 16px;
+  color: #fff;
+}
+.title {
+  font-size: 22px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 28px;
+  }
+}
+@media (min-width: 1024px) {
+  .title {
+    font-size: 32px;
+  }
+}

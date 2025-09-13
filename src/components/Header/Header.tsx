@@ -1,21 +1,22 @@
 import { Link, NavLink } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
+import s from "./Header.module.css";
 
 const Header = () => {
   return (
-    <header className="header">
-      <div className="header__row">
-        <Link to="/" className="logo">
+    <header className={s.header}>
+      <div className={s.row}>
+        <Link to="/" className={s.logo}>
           🎬 FilmApp
         </Link>
-        <nav className="nav">
+        <nav className={s.nav}>
           <NavLink to="/" end>
             Home
           </NavLink>
           <NavLink to="/favorites">Favorites</NavLink>
         </nav>
       </div>
-      <div className="header__search">
+      <div className={s.searchWrap}>
         <SearchBar />
       </div>
     </header>

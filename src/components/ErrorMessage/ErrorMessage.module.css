@@ -1,0 +1,19 @@
+.wrap {
+  color: #a80b0b;
+  text-align: center;
+}
+.title {
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+.desc {
+  opacity: 0.9;
+  margin: 0 0 10px;
+}
+.btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0);
+  color: #a80b0b;
+  border: 1px solid rgba(238, 56, 56, 0.35);
+}

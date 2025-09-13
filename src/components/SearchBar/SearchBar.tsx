@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDebounce } from "../../hooks/useDebounce";
+import s from "./SearchBar.module.css";
 
 const SearchBar = () => {
   const [params, setParams] = useSearchParams();
@@ -22,16 +23,15 @@ const SearchBar = () => {
   }, [debounced]);
 
   return (
-    <form className="search">
+    <form className={s.form}>
       <input
         value={q}
         onChange={(e) => setQ(e.target.value)}
         placeholder="Search movies..."
         aria-label="Search movies"
-        className="input"
+        className={s.input}
       />
     </form>
   );
 };
-
 export default SearchBar;
