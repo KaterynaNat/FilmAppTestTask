@@ -1,4 +1,4 @@
-import { Outlet, NavLink, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
 import s from "./Navigation.module.css";
 
@@ -10,11 +10,7 @@ const Navigation = () => {
         <Outlet />
       </main>
       <footer className={s.footer}>
-        <NavLink to="/">Home</NavLink>·
-        <NavLink to="/favorites">Favorites</NavLink>·
-        <Link to="https://www.themoviedb.org/" target="_blank" rel="noreferrer">
-          TMDB
-        </Link>
+        <p>© {new Date().getFullYear()} Made by Kateryna Naturkach</p>
       </footer>
     </div>
   );
