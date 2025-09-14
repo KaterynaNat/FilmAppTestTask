@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import toast from "react-hot-toast";
 
 type FavState = {
   ids: number[];
@@ -20,7 +21,16 @@ export const useFavorites = create<FavState>((set, get) => ({
   ids: load(),
   toggle: (id) => {
     const { ids } = get();
-    const next = ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id];
+    let next: number[];
+
+    if (ids.includes(id)) {
+      next = ids.filter((x) => x !== id);
+      toast.error("❌ Removed from favorites");
+    } else {
+      next = [...ids, id];
+      toast.success("⭐ Added to favorites");
+    }
+
     localStorage.setItem(KEY, JSON.stringify(next));
     set({ ids: next });
   },
